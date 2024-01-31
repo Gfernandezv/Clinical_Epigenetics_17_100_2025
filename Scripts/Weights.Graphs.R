@@ -69,5 +69,12 @@ inputd$Sex <- as.factor(inputd$Sex)
 inputd$Age <- as.factor(inputd$Age)
 inputd$ATF<-ordered.fun(inputd,"ATF")
 
-ggplot(inputd, aes(x=Age, y=Weight, fill=ATF)) + 
-  geom_boxplot()
+ggplot(inputd, aes(x=Age, y=Weight)) + 
+  geom_boxplot(width=0.3, fill=NA,linewidth = 0.1, size=0, varwidth = FALSE, outlier.alpha = 0)+
+  geom_point(
+    colour   = "black",
+    fill     = inputd$ColorCode,
+    alpha    = 0.7,
+    shape    = 21,
+    size     = 4,
+    position = position_jitter(width = 0.1, seed = 1))

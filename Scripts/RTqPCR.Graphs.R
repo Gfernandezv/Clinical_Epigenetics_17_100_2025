@@ -53,31 +53,29 @@ geom_point(
   size     = 4,
   position = position_jitter(width = 0.1, seed = 1)) +
 ggsignif::geom_signif(
-  size = 1,
-  comparisons = graph.sts$groups,
-  map_signif_level = TRUE,
-  annotations = graph.sts$asterisk_label,
-  textsize    = 5,
-  y_position  = 1.6,
-  step_increase = 0.2)+
+    comparisons = graph.sts$groups,
+    map_signif_level = TRUE,
+    annotations = graph.sts$asterisk_label,
+    size = 1,
+    textsize    = 5,
+    y_position  = 1.6,
+    step_increase = 0.2)+
   xlab("")+
   theme_classic () + plot.theme.box + 
   theme (axis.text.x= element_blank(),
          axis.line = element_line(colour = "black",size = .5, linetype = "solid"),
-         axis.text.y = element_text(size = 12),
-         axis.title.y = element_text(size = 12),
          panel.background = element_blank(),
-         axis.title.y.left = element_blank()) +
-  scale_y_continuous( breaks=c(0,.5,1,1.5,2,2.5),
-                     expand = expansion(mult = c(0, 0.1)), limits = c(0, 2.5))
+         axis.text.y = element_text(size = 12),
+         axis.title.y = element_blank()) +
+  scale_y_continuous(breaks=c(0,.5,1,1.5,2,2.5),
+                     expand = expansion(mult = c(0, 0.1)), limits = c(0, 2.5)) 
 RTqPCR.7wks.g
-figure <-
-          ggarrange(g.a,
+figure <- ggarrange(g.a,
                     RTqPCR.7wks.g,
-                    g.d+ theme(axis.text.y = element_text(size = 12)),
-          ncol = 1, nrow = 4,  
-          align = "v",
-          heights = c(.3,1.7,0.5))
+            g.d+ theme(axis.text.y = element_text(size = 12)),
+            ncol = 1, nrow = 4,  
+            align = "v",
+            heights = c(.2,2,0.7))
 
 RTqPCR.7wks.graph <-
   annotate_figure(figure, top=text_grob("7 Weeks", size = 14, hjust  = 0),
@@ -147,6 +145,7 @@ ggsave("graphs/RTqPCR7.graph1.png", width = 900, height = 1400, units = "px", dp
 
 
 # 14wks.graph -------------------------------------------------------
+#cargar datos
 inputd<- left_join(filter(RTqPCR.Data, Age == 14), 
                    filter(Main, ExpCode_1=="QP14"), 
                    by=c("Short_ID","ATF","ColorCode"))
@@ -180,50 +179,51 @@ RTqPCR.14wks.sts
 graph.sts<-filter(RTqPCR.14wks.sts, p.value<=.05)
 
 RTqPCR.14wks.g <-
-ggplot(inputd,aes(ATF,d_ddCq))+
-geom_boxplot(width=0.3, fill=NA,linewidth = 0.1, size=0, varwidth = FALSE, outlier.alpha = 0)+
-geom_point(inherit.aes = TRUE,
-  colour   = inputd$ColorCode,
-  fill     = inputd$ColorCode,
-  shape    = inputd$Symbol,
-  alpha    = 0.5, 
-  size     = 3, 
-  position = position_jitter(width = 0.1, seed = 1)) +
-geom_point(
-  colour   = inputd$ColorCode,
-  shape    = inputd$Symbol,
-  fill     = inputd$ColorCode,
-  position = position_jitter(width = 0.1, seed = 1)) +
-ggsignif::geom_signif(
-  comparisons = graph.sts$groups,
-  map_signif_level = TRUE,
-  annotations = graph.sts$asterisk_label,
-  textsize    = 5,
-  y_position  = 1.5,
-  step_increase = 0.7) +
-xlab("")+
+  ggplot(inputd,aes(ATF,d_ddCq))+
+  geom_boxplot(width=0.3, fill=NA,linewidth = 0.1, size=0, varwidth = FALSE, outlier.alpha = 0)+
+  # Se utiliza en la tesis para el contorno de las figuras distintas.
+  # geom_point(inherit.aes = TRUE,
+  #   colour   = inputd$ColorCode,
+  #   shape    = 1,
+  #   alpha    = 0.5, 
+  #   size     = 5, 
+  #   position = position_jitter(width = 0.1, seed = 1)) +
+  # para el paper se utiliza solo el simbolo circulo, para la tesis se utiliza la columna Symbol (inputd$Symbol). En las figuras accesorias se incluirá con simbolos
+  geom_point(
+    colour   = "black",
+    fill     = inputd$ColorCode,
+    alpha    = 0.7,
+    shape    = 21,
+    size     = 4,
+    position = position_jitter(width = 0.1, seed = 1)) +
+  ggsignif::geom_signif(
+    comparisons = graph.sts$groups,
+    map_signif_level = TRUE,
+    annotations = graph.sts$asterisk_label,
+    size = 1,
+    textsize    = 5,
+    y_position  = 1.6,
+    step_increase = 0.4)+
+  xlab("")+
   theme_classic () + plot.theme.box + 
   theme (axis.text.x= element_blank(),
          axis.line = element_line(colour = "black",size = .5, linetype = "solid"),
          panel.background = element_blank(),
-         axis.text.y = element_text(size = 10),
+         axis.text.y = element_text(size = 12),
          axis.title.y = element_blank()) +
-  scale_y_continuous(name=bquote("2"^"-ΔΔCq"),
-                     breaks=c(0,.5,1,1.5,2,2.5),
+  scale_y_continuous(breaks=c(0,.5,1,1.5,2,2.5),
                      expand = expansion(mult = c(0, 0.1)), limits = c(0, 2.5)) 
-RTqPCR.14wks.g 
-figure<-
-
-ggarrange(g.a,
-          RTqPCR.14wks.g,
-          g.d+ theme(axis.text.y = element_text(size = 8)),
-          ncol = 1, nrow = 4,  
-          align = "v",
-          heights = c(.3,1.7,0.5))
+RTqPCR.14wks.g
+figure <- ggarrange(g.a,
+                    RTqPCR.14wks.g,
+                    g.d+ theme(axis.text.y = element_text(size = 12)),
+                    ncol = 1, nrow = 4,  
+                    align = "v",
+                    heights = c(.2,2,0.7))
 
 RTqPCR.14wks.graph <-
   annotate_figure(figure, top=text_grob("14 Weeks", size = 14, hjust  = 0),
-                  left = text_grob(bquote("2"^"-ΔΔCq"), rot = 90, hjust=0, x = 2))
+                  left = text_grob(bquote("2"^"-ΔΔCq"), rot = 90, size = 12, hjust=0, x = 2))
 
 # 14wks.Cq ----------------------------------------------------------------
 

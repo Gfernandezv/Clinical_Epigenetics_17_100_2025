@@ -29,11 +29,10 @@ OLT.WT.anexo <- grapher.V2.OLT.anexo(list(levels(inputd$Test)), (OLT.WT.sts$expr
 
 OLT.WT <- grapher.V2.OLT(list(levels(inputd$Test)), (OLT.WT.sts$asterisk_label)) +
   theme(axis.line.y = element_line(size = 0.5, colour = "black", linetype=1), 
-        axis.title.y = element_text(size = rel(1), angle = 90),
-        axis.text.y = element_text(size=7, colour = "black"),
+        axis.text.y = element_text(size=12, colour = "black"),
         axis.ticks.y = element_line(size = 0.5, colour = "black", linetype=1),
-        axis.text.x = element_text(size=7, colour = "black")) +
-  labs(y="Recognition index")
+        axis.text.x = element_text(size=12, colour = "black"))
+
 
 
 # OLT.HTT+ ----------------------------------------------------------------
@@ -112,23 +111,29 @@ OLT.plot <- plot_grid(g.a,
                          OLT.HTT,
                          OLT.VP64,
                          OLT.NoED,
-                         ncol = 4, align = "h", rel_widths = c(1.5, 1,1,1)),
-                       ncol = 1, align = "hv", rel_heights = c(.15, 1))
+                         ncol = 4, align = "h", rel_widths = c(1.3, 1,1,1)),
+                       ncol = 1, align = "hv", rel_heights = c(.2, 1))
+
 OLT.plot.cmp <-
   ggdraw(xlim = c(0, 1), ylim = c(0, 1)) +
-  draw_plot(OLT.plot, 0, 0.15, 1, 0.85) +
-  draw_label("-", x = .2, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
-  draw_label("-", x = .2, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
+  draw_plot(OLT.plot, .1, 0.15, .9, 0.9) + 
+  draw_label("-", x = .25, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
+  draw_label("-", x = .25, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
   draw_label("-", x = .45, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
   draw_label("-", x = .45, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
-  draw_label("+", x = .66, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
-  draw_label("-", x = .66, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")+#
-  draw_label("-", x = .88, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
-  draw_label("+", x = .88, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
-  draw_label("PSD95-6ZF-\nVP64", x = 0, y = .11, hjust = 0, vjust = 0, size = 7, fontface = "plain")+
-  draw_label("NoED", x = 0, y = .03, hjust = 0, vjust = 0, size = 7, fontface = "plain")#+
-  draw_image(OLT.logo_file,  x = .37, y = -.21, scale = .2)
+  draw_label("+", x = .63, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
+  draw_label("-", x = .63, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")+#
+  draw_label("-", x = .81, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
+  draw_label("+", x = .81, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
+  draw_label("PSD95-6ZF-\nVP64", x = 0, y = .11, hjust = 0, vjust = 0, size = 12, fontface = "plain")+
+  draw_label("PSD95-6ZF-\nNoED", x = 0, y = .03, hjust = 0, vjust = 0, size = 12, fontface = "plain")
 
+  
+
+  OLT.plot.paper <- annotate_figure(OLT.plot.cmp, left = text_grob(bquote("Recognition index"), rot = 90, size = 12, hjust=0.5, x = 2))
+  
+  OLT.plot.cmp
+  
 ggsave("graphs/OLT.graph.png", width = 11, height = 13, units = "cm", dpi = 300, bg=NULL)
 
 # Anexas ------------------------------------------------------------------
@@ -177,11 +182,11 @@ NORT.WT.des.sts
 
 NORT.WT <- grapher.V2.OLT(list(levels(inputd$Test)), NORT.WT.sts$asterisk_label) +
   theme(axis.line.y = element_line(size = 0.5, colour = "black", linetype=1), 
-        axis.title.y = element_text(size = rel(1), angle = 90),
-        axis.text.y = element_text(size=7, colour = "black"),
+        axis.title.y = element_text(size = 12, angle = 90),
+        axis.text.y = element_text(size=12, colour = "black"),
         axis.ticks.y = element_line(size = 0.5, colour = "black", linetype=1),
-        axis.text.x = element_text(size=7, colour = "black")) + scale_x_discrete(labels=c("O", "N")) +
-  labs(y="Recognition index")
+        axis.text.x = element_text(size=12, colour = "black")) + scale_x_discrete(labels=c("O", "N")) #+
+#  labs(y="Recognition index")
 
 NORT.WT.anexo <- grapher.V2.OLT.anexo(list(levels(inputd$Test)), NORT.WT.sts$expression) +
   theme(axis.line.y = element_line(size = 0.5, colour = "black", linetype=1), 
@@ -190,6 +195,10 @@ NORT.WT.anexo <- grapher.V2.OLT.anexo(list(levels(inputd$Test)), NORT.WT.sts$exp
         axis.ticks.y = element_line(size = 0.5, colour = "black", linetype=1),
         axis.text.x = element_text(size=7, colour = "black")) +
   labs(y="Recognition index")
+
+NORT.WT.paper <- NORT.WT <- grapher.V2.OLT(list(levels(inputd$Test)), NORT.WT.sts$asterisk_label) +
+  theme(axis.line.y = element_blank(),
+        axis.text.x = element_text(size=12, colour = "black")) + scale_x_discrete(labels=c("O", "N"))
 
 # NORT.HTT+ ----------------------------------------------------------------
 
@@ -208,7 +217,9 @@ NORT.HTT.sts
 
 NORT.HTT.des.sts <- cbind(stscalc.OLT("Training","NORT"), NORT.HTT.sts[6], NORT.HTT.sts[3], NORT.HTT.sts[5], NORT.HTT.sts[17], 
                          NORT.HTT.sts[8:12])
-NORT.HTT.des.sts
+
+NORT.HTT.des.sts.table <- kbl(NORT.HTT.des.sts)%>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
 NORT.HTT <- grapher.V2.OLT(list(levels(inputd$Test)), NORT.HTT.sts$asterisk_label) + scale_x_discrete(labels=c("O", "N"))
 NORT.HTT.anexo <- grapher.V2.OLT.anexo(list(levels(inputd$Test)), NORT.HTT.sts$asterisk_label) + scale_x_discrete(labels=c("T", "N"))
@@ -257,18 +268,18 @@ NORT.VP64.anexo <- grapher.V2.OLT.anexo(list(levels(inputd$Test)), NORT.VP64.sts
 
 
 # Integrador --------------------------------------------------------------
-  NORT.plot <- plot_grid(g.a,
-                        plot_grid(
+  NORT.plot <- plot_grid( g.a,
+                          plot_grid(
                           NORT.WT,
                           NORT.HTT,
                           NORT.VP64,
                           NORT.NoED,
-                          ncol = 4, align = "h", rel_widths = c(1.5, 1,1,1)),
-                        ncol = 1, align = "hv", rel_heights = c(.15, 1))
+                          ncol = 4, align = "h", rel_widths = c(1,1,1,1)),
+                        ncol = 1, align = "hv", rel_heights = c(.2, 1))
   
   NORT.plot.cmp <-
     ggdraw(xlim = c(0, 1), ylim = c(0, 1)) +
-    draw_plot(NORT.plot, 0, 0.15, 1, 0.85) +
+    draw_plot(NORT.plot, 0, .15, 1, .9) +
     draw_label("-", x = .2, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
     draw_label("-", x = .2, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
     draw_label("-", x = .45, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
@@ -276,11 +287,12 @@ NORT.VP64.anexo <- grapher.V2.OLT.anexo(list(levels(inputd$Test)), NORT.VP64.sts
     draw_label("+", x = .66, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
     draw_label("-", x = .66, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")+#
     draw_label("-", x = .88, y = .11, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
-    draw_label("+", x = .88, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
-    draw_label("PSD95-6ZF-\nVP64", x = 0, y = .11, hjust = 0, vjust = 0, size = 6, fontface = "plain")+
-    draw_label("NoED", x = 0, y = .03, hjust = 0, vjust = 0, size = 6, fontface = "plain")
+    draw_label("+", x = .88, y = .03, hjust = 0, vjust = 0, size = 15, fontface = "bold")#+
 
 NORT.CD<- ggarrange(OLT.plot.cmp,NORT.plot.cmp, ncols=2, align = "hv")
+
+NORT.OLT.paper <- plot_grid(OLT.plot.paper,NORT.plot.cmp, ncol=2, align = "hv", rel_widths = c(1.1,1))
+
 
 ggdraw()+
   draw_plot(NORT.CD, 0, -0.5, 1, 1)+
@@ -396,25 +408,25 @@ grapher.V2.OLT <- function (level.i, label.i) {
   
   g <-  ggplot(inputd,aes(x=Test, y=index))+
     geom_boxplot(width=0.3, fill=NA,linewidth = 0.1, size=0, varwidth = FALSE, outlier.alpha = 0)+
-    stat_summary(aes(group=Test), data = inputd,  fun =median, color = "black", geom = "line", size=0.5, alpha=0.2) +
+    stat_summary(aes(group=Test), data = inputd,  fun =median, color = "black", geom = "line", size=1, alpha=0.2) +
     geom_point(inherit.aes = TRUE,
-               colour   = inputd$ColorCode,
+               colour   = "black",
                fill     = inputd$ColorCode,
-               shape    = inputd$Symbol,
+               shape    = 21,
                alpha    = 0.5, 
-               size     = 3, 
+               size     = 4, 
                position = position_jitter(width = 0.1, seed = 1)) +
     geom_line(aes(group = Short_ID),
               colour   = "grey",
-              alpha    = 0.5, 
+              alpha    = 1, 
               position = position_jitter(width = 0.1, seed = 1),
               linetype = "dashed")+
-    theme_classic () + labs(y="Recognition index") + theme (axis.line.y = element_blank(),
+    theme_classic () + theme (axis.line.y = element_blank(),
                                                             axis.title.y = element_blank(),
                                                             axis.text.y = element_blank(),
                                                             axis.ticks.y = element_blank(),
                                                             axis.title.x = element_blank(),
-                                                            axis.text.x = element_text(size=7, colour = "black"),
+                                                            axis.text.x = element_text(size=12, colour = "black"),
                                                             plot.margin = margin(.5,0,0,0, "cm"))+
     scale_y_continuous(expand = c(0, 0), limits = c(.35, 1)) + scale_x_discrete(labels=c("ND", "D"))
   
@@ -423,9 +435,10 @@ grapher.V2.OLT <- function (level.i, label.i) {
       comparisons = level.i,
       map_signif_level = TRUE,
       annotations = label.i,
-      y_position  = max(inputd$index)+.05,
+      size = 1,
+      y_position  = max(inputd$index)+0.02,
       textsize    = 5,
-      step_increase = 0.17)
+      step_increase = 0.05)
     return(g)
   } else {
     return (g)

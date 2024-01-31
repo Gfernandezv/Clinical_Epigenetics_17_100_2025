@@ -32,22 +32,26 @@ df
 g.b <-
   ggplot(inputd,aes(ATF,Ratio))+
   geom_boxplot(width=0.3, fill=NA,linewidth = 0.1, size=0, varwidth = FALSE, outlier.alpha = 0)+
-  geom_point(inherit.aes = TRUE,
-    colour   = inputd$ColorCode,
-    fill     = inputd$ColorCode,
-    shape    = inputd$Symbol,
-    alpha    = 0.5, 
-    size     = 3, 
-    position = position_jitter(width = 0.1, seed = 1)) +
+  # Se utiliza en la tesis para el contorno de las figuras distintas.
+  # geom_point(inherit.aes = TRUE,
+  #   colour   = inputd$ColorCode,
+  #   shape    = 1,
+  #   alpha    = 0.5, 
+  #   size     = 5, 
+  #   position = position_jitter(width = 0.1, seed = 1)) +
+  # para el paper se utiliza solo el simbolo circulo, para la tesis se utiliza la columna Symbol (inputd$Symbol). En las figuras accesorias se incluirá con simbolos
   geom_point(
-    colour   = inputd$ColorCode,
-    shape    = inputd$Symbol,
+    colour   = "black",
     fill     = inputd$ColorCode,
+    alpha    = 0.7,
+    shape    = 21,
+    size     = 4,
     position = position_jitter(width = 0.1, seed = 1)) +
   ggsignif::geom_signif(
     comparisons = graph.sts$groups,
     map_signif_level = TRUE,
     annotations = graph.sts$asterisk_label,
+    size = 1,
     textsize    = 5,
     y_position  = 1.6,
     step_increase = 0.2)+
@@ -65,14 +69,14 @@ g.b
 WB.7wks.figure <-
           ggarrange(g.a,
           g.b,
-          g.d+ theme(axis.text.y = element_text(size = 9)),
+          g.d+ theme(axis.text.y = element_text(size = 12)),
           ncol = 1, nrow = 4,  
           align = "v",
           heights = c(.2,2,0.7))
 
 WB.7wks.graph <-
   annotate_figure(WB.7wks.figure, top=text_grob("7 Weeks", size = 14, hjust  = 0),
-                  left = text_grob("PSD95/β-Actin norm. ratio", rot = 90, hjust=0.3, x = 2))
+                  left = text_grob("PSD95/β-Actin norm. ratio", rot = 90, size = 12, hjust=0.3, x = 2))
 
 ggsave("graphs/WB7.graph1.png", width = 1200, height = 1500, units = "px", dpi = 300, bg=NULL)
 
@@ -109,24 +113,28 @@ graph.sts<-filter(df, p.value<=.05)
 g.b <-
   ggplot(inputd,aes(ATF,Ratio))+
   geom_boxplot(width=0.3, fill=NA,linewidth = 0.1, size=0, varwidth = FALSE, outlier.alpha = 0)+
-  geom_point(inherit.aes = TRUE,
-             colour   = inputd$ColorCode,
-             fill     = inputd$ColorCode,
-             shape    = inputd$Symbol,
-             alpha    = 0.5, 
-             size     = 3, 
-             position = position_jitter(width = 0.1, seed = 1)) +
+  # Se utiliza en la tesis para el contorno de las figuras distintas.
+  # geom_point(inherit.aes = TRUE,
+  #   colour   = inputd$ColorCode,
+  #   shape    = 1,
+  #   alpha    = 0.5, 
+  #   size     = 5, 
+  #   position = position_jitter(width = 0.1, seed = 1)) +
+  # para el paper se utiliza solo el simbolo circulo, para la tesis se utiliza la columna Symbol (inputd$Symbol). En las figuras accesorias se incluirá con simbolos
   geom_point(
-    colour   = inputd$ColorCode,
-    shape    = inputd$Symbol,
+    colour   = "black",
     fill     = inputd$ColorCode,
+    alpha    = 0.7,
+    shape    = 21,
+    size     = 4,
     position = position_jitter(width = 0.1, seed = 1)) +
   ggsignif::geom_signif(
     comparisons = graph.sts$groups,
     map_signif_level = TRUE,
     annotations = graph.sts$asterisk_label,
+    size = 1,
     textsize    = 5,
-    y_position  = 1.5,
+    y_position  = 1.6,
     step_increase = 0.2)+
   xlab("")+
   theme_classic () + plot.theme.box + 
@@ -142,14 +150,14 @@ g.b
 WB.14wks.figure <-
   ggarrange(g.a,
             g.b,
-            g.d+ theme(axis.text.y = element_text(size = 9)),
+            g.d+ theme(axis.text.y = element_text(size = 12)),
             ncol = 1, nrow = 4,  
             align = "v",
             heights = c(.2,2,0.7))
 
 WB.14wks.graph <-
   annotate_figure(WB.14wks.figure, top=text_grob("14 Weeks", size = 14, hjust  = 0),
-                  left = text_grob("PSD95/β-Actin norm. ratio", rot = 90, hjust=0.3, x = 2))
+                  left = text_grob("PSD95/β-Actin norm. ratio", rot = 90,size = 12, hjust=0.3, x = 2))
 
 ggsave("graphs/WB14.graph.png", width = 1200, height = 1500, units = "px", dpi = 300, bg=NULL)
 

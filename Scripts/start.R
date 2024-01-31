@@ -239,7 +239,7 @@ theme.minigraph <- theme(panel.grid   = element_blank(),
                          panel.background = element_blank())
 
 g.a<- ggplot(shapes2, aes(x, y))+
-  geom_text(aes(label = shape), size = 3)+
+  geom_text(aes(label = shape), size = 10)+
   scale_y_discrete(limits = c("")) +
   theme.minigraph + theme(plot.margin = margin(0,0,0,0, "cm")) +
   annotate("text", x = c(1,3), y = 1, label = c("Wt","Transgenic"), colour = "black", size = 3) +
@@ -259,9 +259,10 @@ g.c2<- ggplot(shapes2, aes(x, y))+
 g.d<- ggplot(shapes, aes(x, y)) + 
   geom_text(aes(label = shape), size = 5) + 
   scale_y_discrete(limits = c("PSD95-6ZF \n NoED","PSD95-6ZF \n VP64")) +
-  theme.minigraph + theme(plot.margin = margin(0,0,0,0, "cm"))
+  theme.minigraph + theme(plot.margin = margin(0,0,0,0, "cm"), axis.text.y = element_text(size = 12))
 
 g.d2<- ggplot(shapes, aes(x, y)) + 
-  geom_text(aes(label = shape), size = 5) + 
+  geom_text(aes(label = shape), size = 12) + 
   scale_y_discrete(limits = c(" \n NoED","PSD95-6ZF \n VP64")) +
   theme.minigraph + theme(plot.margin = margin(0,0,0,0, "cm"))
+

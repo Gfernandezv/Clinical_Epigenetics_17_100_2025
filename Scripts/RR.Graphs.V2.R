@@ -86,6 +86,13 @@ RR.W6D3.det.sts<- ggbetweenstats(inputd, ATF, time)
 
 RR.w6.D3 <- grapher2.RR()
 RR.w6.D3.anexo <- grapher6.RR()
+
+RR.W6.paper <- RR.w6.D3 +
+  theme_classic () + labs(y="Latency to fall (s)") + theme (
+  axis.text.x = element_blank(),
+  axis.title.x = element_blank(),
+  text = element_text(size = 12))
+
 # integrator --------------------------------------------------------------
 library(cowplot)
 
@@ -233,7 +240,7 @@ RR.W9D3.det.sts<- ggbetweenstats(inputd, ATF, time)
 
 RR.w9.D3 <- grapher2.RR()
 RR.w9.D3.anexo <- grapher6.RR()
-
+RR.W9.paper <- RR.w9.D3
 # integrator --------------------------------------------------------------
 RR.W9 <- plot_grid(
   plot_grid(g.a,
@@ -281,6 +288,18 @@ RR.W9.anexo <- plot_grid(
   ncol = 3, align = "hv", rel_widths = c(1.3,1,1))
 
 RR.W9.anexo
+#paper--------------
+
+RR.paper <- plot_grid(
+  plot_grid(g.a,
+             RR.W6.paper,
+             g.d,
+             ncol = 1, align = "v", rel_heights = c(.15, 1,.2)),
+plot_grid(g.a,
+          RR.W9.paper,
+          (g.d + theme(axis.text.y = element_blank())),
+          ncol = 1, align = "v", rel_heights = c(.15, 1,.2)), 
+ncol = 2, align = "hv", rel_widths = c(1.3,1,1))
 
 ggsave("graphs/RR.DaysW9.png", width = 2000, height = 1300, units = "px", dpi = 300, bg=NULL)
 
@@ -481,12 +500,12 @@ grapher2.RR <- function () {
 g<- 
   ggplot(inputd,aes(x= ATF, y=time))+
   geom_boxplot(width=0.3, fill=NA,linewidth = 0.1, size=0, varwidth = FALSE, outlier.alpha = 0)+
-  geom_point(inherit.aes = TRUE,
-    colour   = inputd$ColorCode,
+  geom_point(
+    colour   = "black",
     fill     = inputd$ColorCode,
-    shape    = inputd$Symbol,
-    alpha    = 0.5, 
-    size     = 2, 
+    alpha    = 0.7,
+    shape    = 21,
+    size     = 4,
     position = position_jitter(width = 0.1, seed = 1)) +
   theme_classic () + labs(y="Latency to fall (s)") + theme (axis.line.y = element_blank(),
                                                               axis.title.y = element_blank(),
@@ -495,16 +514,19 @@ g<-
                                                               axis.text.x = element_blank(),
                                                               axis.title.x = element_blank(),
                                                               text = element_text(size = 5))+
-  scale_y_continuous(expand = c(0, 0), limits = c(0, 400))
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 400)) +
+  geom_signif(size=1)
   
   if(length(graph.sts$groups)!=0) {
     g <- g + geom_signif(
       comparisons = graph.sts$groups,
       map_signif_level = TRUE,
       annotations = graph.sts$asterisk_label,
-      textsize    = 3,
+      textsize    = 5,
+      size = 1,
       y_position  = 233,
       step_increase = 0.17)
+    print("lista de grupos aplicada")
     return(g)
   } else {
     return (g)
