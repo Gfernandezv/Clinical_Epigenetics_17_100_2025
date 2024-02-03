@@ -90,3 +90,4 @@ BM.WT.15.g.anexo <- grapher.BM.anexo(c("Day 1", "Day 5"), BM.WT.15.sts$asterisk_
         axis.title.x = element_blank())
 BM.WT.15.g
 BM.WT.15.g.anexo
+

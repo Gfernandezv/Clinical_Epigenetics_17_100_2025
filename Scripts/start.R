@@ -47,7 +47,12 @@ NOROLT.Data <- read_delim("Data/NOROLT.Data.csv",
 BM.Data <- read_delim("Data/BM.Data.csv", 
                       delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
                                                                           grouping_mark = "."), trim_ws = TRUE)
-
+BM.Strategy <- read_delim("Data/BM.Data2.csv", 
+                      delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
+                                                                          grouping_mark = "."), trim_ws = TRUE)
+Fluo.Data <- read_delim("Data/Spine.Data.csv", 
+                                 delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
+                                                                                     grouping_mark = "."), trim_ws = TRUE)
 coloc.Data <- read_delim("Data/coloc.Data.csv", 
                          delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
                                                                              grouping_mark = "."), trim_ws = TRUE)
