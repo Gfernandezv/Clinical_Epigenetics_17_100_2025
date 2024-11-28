@@ -1,0 +1,23 @@
+# install.R
+install.packages(c(
+  "magick",
+  "forcats",
+  "cowplot",
+  "statsExpressions",
+  "ggplot2",
+  "ggsignif",
+  "ggstatsplot",
+  "rstatix",
+  "dplyr",
+  "readr",
+  "ggrepel",
+  "ggpubr",
+  "rlang",
+  "tidyverse",
+  "kableExtra",
+  "purrr",
+  "knitr",
+  "docxtools",
+  "weights",
+  "readr"
+))
