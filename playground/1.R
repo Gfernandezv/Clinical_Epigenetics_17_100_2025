@@ -1,13 +1,18 @@
+# Dependencies
 library(readr)
 library(stringr)
 library(data.table)
 library(dplyr)
+library(here)
+
+# Helper variable for project paths
+project_root <- here::here()
 # Put the csv filename (extension included)
-reading_file <- "Data/Detailed_ROI_data_20230911052117.csv"
-Working_dir <- "C:/Users/germa/Lab Dropbox/Lab Neuroepigenetics/Lab of Neuroepigenetics/4. Huntington team - German Kevin/2-German - tesis/Analisis/GitHub/Thesis"
+reading_file <- file.path(project_root, "Data", "Detailed_ROI_data_20230911052117.csv")
+Working_dir <- project_root
 
 # Extract the file name from the path
-csv_file_name <- gsub("\\.csv$", "", basename(file.path(Working_dir, reading_file))) 
+csv_file_name <- gsub("\\.csv$", "", basename(reading_file))
 
 setwd(Working_dir)
 raw.data.ROI <- read_csv(reading_file)
@@ -61,7 +66,7 @@ for (i in seq_along(out.roi$analisis2)) {
 collapsed_data <- dplyr::bind_rows(data_frames_list)
 
 # Define the path to save the CSV file
-output_file_path <- file.path("Data", paste(csv_file_name, "_analized.csv", sep = ""))
+output_file_path <- file.path(project_root, "Data", paste(csv_file_name, "_analized.csv", sep = ""))
 
 # Write the dataframe to the CSV file
 write.csv2(collapsed_data, file = output_file_path)

@@ -21,7 +21,11 @@ library("purrr")
 library("knitr")
 library("docxtools")
 library(weights)
+library(here)
 theme_update(plot.title = element_text(hjust = 0.5))
+
+# Helper variable for project paths
+project_root <- here::here()
 
 # Opciones generales ------------------------------------------------------
 
@@ -30,38 +34,55 @@ options(digits=3)
 
 # Data Loading ------------------------------------------------------------
 
-Main <- read_delim("C:/Users/germa/Lab Dropbox/Lab Neuroepigenetics/Lab of Neuroepigenetics/4. Huntington team - German Kevin/2-German - tesis/Analisis/GitHub/Thesis/Data/Main.csv", 
-                   delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", grouping_mark = "."), trim_ws = TRUE)
+Main <- read_delim(file.path(project_root, "Data", "Main.csv"),
+                   delim = ";", escape_double = FALSE,
+                   locale = locale(decimal_mark = ",",
+                                  grouping_mark = "."),
+                   trim_ws = TRUE)
 
-RTqPCR.Data <- read_delim("C:/Users/germa/Lab Dropbox/Lab Neuroepigenetics/Lab of Neuroepigenetics/4. Huntington team - German Kevin/2-German - tesis/Analisis/GitHub/Thesis/Data/RTqPCR.Data.csv", 
-                          delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",",grouping_mark = "."), trim_ws = TRUE)
+RTqPCR.Data <- read_delim(file.path(project_root, "Data", "RTqPCR.Data.csv"),
+                          delim = ";", escape_double = FALSE,
+                          locale = locale(decimal_mark = ",",
+                                         grouping_mark = "."),
+                          trim_ws = TRUE)
 
-WB.inj.Data <- readr::read_delim("Data/WB.inj.Data.csv",delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",",grouping_mark = "."), trim_ws = TRUE)
+WB.inj.Data <- readr::read_delim(file.path(project_root, "Data", "WB.inj.Data.csv"),
+                                 delim = ";", escape_double = FALSE,
+                                 locale = locale(decimal_mark = ",",
+                                                grouping_mark = "."),
+                                 trim_ws = TRUE)
 
-RR.Data <- read_delim("Data/RR.Data.csv", delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",",grouping_mark = "."), trim_ws = TRUE)
+RR.Data <- read_delim(file.path(project_root, "Data", "RR.Data.csv"),
+                      delim = ";", escape_double = FALSE,
+                      locale = locale(decimal_mark = ",",
+                                     grouping_mark = "."),
+                      trim_ws = TRUE)
 
-NOROLT.Data <- read_delim("Data/NOROLT.Data.csv", 
-                          delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
-                                                                              grouping_mark = "."), trim_ws = TRUE)
+NOROLT.Data <- read_delim(file.path(project_root, "Data", "NOROLT.Data.csv"),
+                          delim = ";", escape_double = FALSE,
+                          locale = locale(decimal_mark = ",",
+                                         grouping_mark = "."),
+                          trim_ws = TRUE)
 
-BM.Data <- read_delim("Data/BM.Data.csv", 
+BM.Data <- read_delim(file.path(project_root, "Data", "BM.Data.csv"),
+                      delim = ";", escape_double = FALSE,
+                      locale = locale(decimal_mark = ",",
+                                     grouping_mark = "."), trim_ws = TRUE)
+BM.Strategy <- read_delim(file.path(project_root, "Data", "BM.Data2.csv"), 
                       delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
                                                                           grouping_mark = "."), trim_ws = TRUE)
-BM.Strategy <- read_delim("Data/BM.Data2.csv", 
-                      delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
-                                                                          grouping_mark = "."), trim_ws = TRUE)
-Fluo.Data <- read_delim("Data/Spine.Data.csv", 
+Fluo.Data <- read_delim(file.path(project_root, "Data", "Spine.Data.csv"), 
                                  delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
                                                                                      grouping_mark = "."), trim_ws = TRUE)
-coloc.Data <- read_delim("Data/coloc.Data.csv", 
+coloc.Data <- read_delim(file.path(project_root, "Data", "coloc.Data.csv"), 
                          delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
                                                                              grouping_mark = "."), trim_ws = TRUE)
 
-Weight.Data <- read_delim("Data/Weight.Data.csv", 
+Weight.Data <- read_delim(file.path(project_root, "Data", "Weight.Data.csv"), 
                           delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
                                                                               grouping_mark = "."), trim_ws = TRUE)
 
-Force.Data <- read_delim("Data/Force.Data.csv", 
+Force.Data <- read_delim(file.path(project_root, "Data", "Force.Data.csv"), 
                          delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
                                                                              grouping_mark = "."), trim_ws = TRUE)
 

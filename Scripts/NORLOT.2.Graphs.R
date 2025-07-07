@@ -2,6 +2,8 @@
 
 # OLT.WT ------------------------------------------------------------------
 library(statsExpressions)
+library(here)
+project_root <- here::here()
 inputd<- left_join(filter(NOROLT.Data, ATF=="HTT-NI"), 
                    filter(Main, ExpCode_5=="BO07"), 
                    by=c("Short_ID","ATF","ColorCode"))
@@ -302,9 +304,9 @@ ggdraw()+
   draw_label("C", x = .01, y = .5, hjust = 0, vjust = 0, size = 15, fontface = "bold")+
   draw_label("D", x = .51, y = .5, hjust = 0, vjust = 0, size = 15, fontface = "bold")
 
-NORT.logo_file <- "C:/Users/germa/Lab Dropbox/Lab Neuroepigenetics/Lab of Neuroepigenetics/4. Huntington team - German Kevin/2-German - tesis/Analisis/GitHub/Thesis/Data/NORT.sqm.png"
-OLT.logo_file <- "C:/Users/germa/Lab Dropbox/Lab Neuroepigenetics/Lab of Neuroepigenetics/4. Huntington team - German Kevin/2-German - tesis/Analisis/GitHub/Thesis/Data/OLT.sqm.png"
-NORT.squema <- "C:/Users/germa/Lab Dropbox/Lab Neuroepigenetics/Lab of Neuroepigenetics/4. Huntington team - German Kevin/2-German - tesis/Analisis/GitHub/Thesis/Data/NORT.OLT.sqm.png"
+NORT.logo_file <- file.path(project_root, "Data", "NORT.sqm.png")
+OLT.logo_file  <- file.path(project_root, "Data", "OLT.sqm.png")
+NORT.squema    <- file.path(project_root, "Data", "NORT.OLT.sqm.png")
 ggsave("graphs/NORTOLT.cmp.png", width = 15, height = 13, units = "cm", dpi = 300, bg=NULL)
 
 # anexos ------------------------------------------------------------------
