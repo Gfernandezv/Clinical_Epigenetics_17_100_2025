@@ -1,0 +1,11 @@
+# R-specific ignores
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# Ignore large generated files
+poster_ASCB2024.pdf
+poster_ASCB2024_2.pdf
