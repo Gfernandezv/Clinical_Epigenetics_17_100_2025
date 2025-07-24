@@ -18,6 +18,5 @@ install.packages(c(
   "purrr",
   "knitr",
   "docxtools",
-  "weights",
-
+  "weights"
 ))
