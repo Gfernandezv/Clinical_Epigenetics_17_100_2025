@@ -19,5 +19,6 @@ install.packages(c(
   "knitr",
   "docxtools",
   "weights",
-  "readr"
+  "ggthemes",
+  "effectsize"
 ))
