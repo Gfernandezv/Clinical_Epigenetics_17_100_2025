@@ -23,6 +23,10 @@ library("docxtools")
 library(weights)
 theme_update(plot.title = element_text(hjust = 0.5))
 
+# Path configuration ------------------------------------------------------
+# Adjust 'data_dir' if the repository structure changes
+data_dir <- "Data"
+
 # Opciones generales ------------------------------------------------------
 
 options(digits=3)
@@ -30,10 +34,10 @@ options(digits=3)
 
 # Data Loading ------------------------------------------------------------
 
-Main <- read_delim("C:/Users/germa/Lab Dropbox/Lab Neuroepigenetics/Lab of Neuroepigenetics/4. Huntington team - German Kevin/2-German - tesis/Analisis/GitHub/Thesis/Data/Main.csv", 
+Main <- read_delim(file.path(data_dir, "Main.csv"),
                    delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", grouping_mark = "."), trim_ws = TRUE)
 
-RTqPCR.Data <- read_delim("C:/Users/germa/Lab Dropbox/Lab Neuroepigenetics/Lab of Neuroepigenetics/4. Huntington team - German Kevin/2-German - tesis/Analisis/GitHub/Thesis/Data/RTqPCR.Data.csv", 
+RTqPCR.Data <- read_delim(file.path(data_dir, "RTqPCR.Data.csv"),
                           delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",",grouping_mark = "."), trim_ws = TRUE)
 
 WB.inj.Data <- readr::read_delim("Data/WB.inj.Data.csv",delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",",grouping_mark = "."), trim_ws = TRUE)
