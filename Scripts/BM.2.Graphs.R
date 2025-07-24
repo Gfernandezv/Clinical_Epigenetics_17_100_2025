@@ -1,4 +1,3 @@
-install.packages("ggthemes") # Install 
 library(ggthemes) # Load
 
 # Development -------------------------------------------------------------
