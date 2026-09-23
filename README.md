@@ -1,6 +1,6 @@
 # Pipeline for: Restoring endogenous Dlg4/PSD95 expression by an artificial transcription factor ameliorates cognitive and motor learning deficits in the R6/2 mouse model of Huntington’s disease
 ## https://doi.org/10.1186/s13148-025-01903-2
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Gfernandezv/Thesis/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Gfernandezv/Clinical_Epigenetics_17_100_2025/HEAD)
 
 ## Installing Dependencies
 
